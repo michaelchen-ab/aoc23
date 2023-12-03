@@ -15,29 +15,29 @@ print(total)
 
 total = 0
 num_map = {
-    'one': 1,
-    '1': 1,
-    'two': 2,
-    '2': 2,
-    'three': 3,
-    '3': 3,
-    'four': 4,
-    '4': 4,
-    'five': 5,
-    '5': 5,
-    'six': 6,
-    '6': 6,
-    'seven': 7,
-    '7': 7,
-    'eight': 8,
-    '8': 8,
-    'nine': 9,
-    '9': 9,
+    "one": 1,
+    "1": 1,
+    "two": 2,
+    "2": 2,
+    "three": 3,
+    "3": 3,
+    "four": 4,
+    "4": 4,
+    "five": 5,
+    "5": 5,
+    "six": 6,
+    "6": 6,
+    "seven": 7,
+    "7": 7,
+    "eight": 8,
+    "8": 8,
+    "nine": 9,
+    "9": 9,
 }
 for line in data:
     # (num, index)
-    first_num = (-1, float('inf'))
-    last_num = (-1, -float('inf'))
+    first_num = (-1, float("inf"))
+    last_num = (-1, -float("inf"))
     for num_str, num in num_map.items():
         first_occurrence = line.find(num_str)
         if first_occurrence == -1:
