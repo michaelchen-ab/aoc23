@@ -17,7 +17,7 @@ def is_valid(turns):
 
 total = 0
 for line in data:
-    game_turn, turns = line.strip().split(': ')
+    game_turn, turns = line.split(': ')
     if is_valid(turns):
         id = game_turn.split(' ')[-1]
         total += int(id)
@@ -25,7 +25,7 @@ print(total)
 
 total = 0
 for line in data:
-    _, turns = line.strip().split(': ')
+    _, turns = line.split(': ')
     maxes = {}
     for turn in turns.split('; '):
         for quantity in turn.split(', '):

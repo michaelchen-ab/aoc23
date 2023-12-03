@@ -8,5 +8,5 @@ def get_input(day):
     path = get_input_file(day)
     if not os.path.isfile(path):
         raise FileNotFoundError(f'https://adventofcode.com/2023/day/{day}/input')
-    return open(path).readlines()
+    return open(path).read().splitlines()
 
