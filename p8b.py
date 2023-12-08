@@ -15,13 +15,13 @@ for s in steps.split("\n"):
     mapp[key] = {"L": l, "R": r}
 
 poses = [k for k in mapp if k.endswith("A")]
-rounds_agg = []
+times_agg = []
 for pos in poses:
-    for rounds in itertools.count(1):
+    times = 0
+    while not pos.endswith("Z"):
         for step in instruction:
             pos = mapp[pos][step]
-        if pos.endswith("Z"):
-            rounds_agg.append(rounds)
-            break
+            times += 1
+    times_agg.append(times)
 
-print(len(instruction) * math.lcm(*rounds_agg))
+print(math.lcm(*times_agg))
