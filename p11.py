@@ -4,18 +4,8 @@ import itertools
 file = open(sys.argv[1]).read().strip()
 lines = [list(line) for line in file.split("\n")]
 
-empty_rows = []
-for i in range(len(lines) - 1, -1, -1):
-    line = lines[i]
-    if all(c == "." for c in line):
-        empty_rows.append(i)
-
-empty_cols = []
-for j in range(len(lines[0]) - 1, -1, -1):
-    col = [line[j] for line in lines]
-    if all(c == "." for c in col):
-        empty_cols.append(j)
-
+empty_rows = [i for i, line in enumerate(lines) if all(c == "." for c in line)]
+empty_cols = [j for j in range(len(lines[0])) if all(line[j] == "." for line in lines)]
 stars = [
     (i, j) for i, line in enumerate(lines) for j, char in enumerate(line) if char == "#"
 ]
