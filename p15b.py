@@ -1,5 +1,6 @@
+import re
 import sys
-from collections import defaultdict, OrderedDict
+from collections import defaultdict
 
 file = open(sys.argv[1]).read().strip()
 
@@ -13,16 +14,13 @@ def hash(x: str):
     return val
 
 
-boxes = defaultdict(OrderedDict)
+boxes = defaultdict(dict)
 for seq in file.split(","):
-    arr = seq.split("=")
-    if len(arr) == 2:
-        a, b = arr
-        box = hash(a)
+    a, b = re.split("=|-", seq)
+    box = hash(a)
+    if b:
         boxes[box][a] = int(b)
     else:
-        a = seq[:-1]
-        box = hash(a)
         boxes[box].pop(a, None)
 
 
