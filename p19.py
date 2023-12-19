@@ -13,15 +13,13 @@ for line in rules.split("\n"):
             a, b = rule.split("<")
             num, dest = b.split(":")
             func = lambda x, dest=dest, a=a, num=num: dest if x[a] < int(num) else None
-            rule_map[rule_name].append({"f": func, "desc": rule})
         elif ">" in rule:
             a, b = rule.split(">")
             num, dest = b.split(":")
             func = lambda x, dest=dest, a=a, num=num: dest if x[a] > int(num) else None
-            rule_map[rule_name].append({"f": func, "desc": rule})
         else:
             func = lambda _, rule=rule: rule
-            rule_map[rule_name].append({"f": func, "desc": rule})
+        rule_map[rule_name].append(func)
 
 total = 0
 for part in parts.split("\n"):
@@ -34,7 +32,7 @@ for part in parts.split("\n"):
     while cur not in "AR":
         rules = rule_map[cur]
         for rule in rules:
-            next = rule["f"](map)
+            next = rule(map)
             if next:
                 cur = next
                 break
