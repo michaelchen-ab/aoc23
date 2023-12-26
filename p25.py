@@ -16,16 +16,16 @@ lines = [(line) for line in file.split("\n")]
 # vmq - cbl
 # bvz - nvf
 
-graph = defaultdict(list)
+graph = defaultdict(set)
 for line in lines:
     node, ns = line.split(": ")
     for n in ns.split():
-        graph[node].append(n)
-        graph[n].append(node)
+        graph[node].add(n)
+        graph[n].add(node)
 
 for i, j in [("klk", "xgz"), ("vmq", "cbl"), ("bvz", "nvf")]:
-    graph[i] = [x for x in graph[i] if x != j]
-    graph[j] = [x for x in graph[j] if x != i]
+    graph[i].remove(j)
+    graph[j].remove(i)
 
 prod = 1
 for i in ["klk", "xgz"]:
